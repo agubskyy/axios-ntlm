@@ -84,7 +84,7 @@ function createNTLMHash(password) {
 }
 
 function createNTLMv2Hash(ntlmhash, username, authTargetName) {
-	let hmac = crypto.createHmac('md5', ntlmhash);
+	let hmac = crypto.createHmac('md5', Buffer.from(ntlmhash));
 	hmac.update(new Buffer.from(username.toUpperCase() + authTargetName, 'ucs2'));
 	return hmac.digest();
 }
